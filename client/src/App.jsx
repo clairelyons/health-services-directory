@@ -1,17 +1,19 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
+import HomePage from './pages/HomePage'; // Create this component next
 import './styles/global.scss';
 
 function App() {
   return (
-    <div className="App">
-      
+    <Router>
       <Layout>
-          <h1>Welcome to the Health Services Directory</h1>
-          {/* Additional components go here */}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          {/* Add more routes here */}
+        </Routes>
       </Layout>
-
-    </div>
+    </Router>
   );
 }
 
