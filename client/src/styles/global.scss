@@ -1,0 +1,60 @@
+// Example: variables
+$primary-color: #008080;
+$secondary-color: #F5F5DC;
+$font-family: 'Roboto', sans-serif;
+
+// Example: global styles
+body {
+  font-family: $font-family;
+  background-color: $secondary-color;
+  margin: 0;
+  padding: 0;
+}
+
+// Example: mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Layout styles
+.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  header {
+    background-color: $primary-color;
+    color: white;
+    padding: 1rem;
+  }
+  
+  footer {
+    background-color: $secondary-color;
+    color: black;
+    padding: 1rem;
+    margin-top: auto;
+  }
+  
+  main {
+    flex: 1;
+    padding: 2rem;
+  }
+
+  .navbar {
+    background-color: $primary-color;
+    padding: 1rem;
+    ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      color: white;
+      cursor: pointer;
+    }
+  }
