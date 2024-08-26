@@ -58,3 +58,40 @@ body {
       cursor: pointer;
     }
   }
+
+  // Home page catgories
+  .category-list {
+    margin: 2rem 0;
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      li {
+        background-color: $primary-color;
+        color: white;
+        padding: 0.5rem 1rem;
+        margin-bottom: 0.5rem;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .search-bar {
+    display: flex;
+    margin: 2rem 0;
+    input {
+      flex: 1;
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      background-color: $primary-color;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  }
