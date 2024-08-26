@@ -78,7 +78,7 @@ body {
       }
     }
   }
-
+// Home page
   .search-bar {
     display: flex;
     margin: 2rem 0;
@@ -93,5 +93,40 @@ body {
       color: white;
       border: none;
       cursor: pointer;
+    }
+  }
+
+  .service-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+    h3 {
+      margin: 0 0 0.5rem 0;
+    }
+  
+    p {
+      margin: 0 0 1rem 0;
+    }
+  
+    .category {
+      display: inline-block;
+      background-color: $primary-color;
+      color: white;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+  
+    button {
+      background-color: $secondary-color;
+      color: $primary-color;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 4px;
     }
   }
