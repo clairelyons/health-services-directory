@@ -31,3 +31,38 @@ CREATE TABLE bookmarks (
     FOREIGN KEY (service_id) REFERENCES services(id)
 );
 
+-- Insert users
+INSERT INTO users (email, password) VALUES 
+('user1@example.com', 'password123'),
+('user2@example.com', 'password123'),
+('user3@example.com', 'password123');
+
+-- Insert categories
+INSERT INTO categories (name) VALUES 
+('General Health'),
+('Mental Health'),
+('Dental Care'),
+('Vision Care');
+
+-- Insert services
+INSERT INTO services (title, description, category_id, contact_method) VALUES 
+('City Health Clinic', 'A clinic offering general health services.', 1, 'Phone'),
+('Mental Wellness Center', 'Support and counseling services for mental health.', 2, 'Email'),
+('Bright Smile Dental', 'Comprehensive dental care services.', 3, 'Message'),
+('Clear Vision Optometry', 'Vision care and eye exams.', 4, 'Phone'),
+('Family Health Center', 'Family-oriented health services.', 1, 'Phone'),
+('Mental Health Hotline', '24/7 mental health support hotline.', 2, 'Phone');
+
+-- Insert bookmarks
+INSERT INTO bookmarks (user_id, service_id) VALUES 
+(1, 1),
+(1, 2),
+(2, 3),
+(2, 4),
+(3, 5);
+
+
+SELECT * FROM users;
+SELECT * FROM categories;
+SELECT * FROM services;
+SELECT * FROM bookmarks;

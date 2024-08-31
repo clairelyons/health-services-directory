@@ -1,10 +1,12 @@
 const express = require('express');
 const mysql = require('mysql2');
 const dotenv = require('dotenv');
+const cors = require('cors')
 
 dotenv.config();
 
 const app = express();
+app.use(cors()) // Enable CORS for all routes
 const PORT = process.env.PORT || 5002;
 
 // Create a connection pool
@@ -35,13 +37,25 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-// Add the Categories API Endpoint
+// Fetch All Categories API Endpoint
 app.get('/api/categories', (req, res) => {
   const sql = 'SELECT * FROM categories';
   db.query(sql, (err, results) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
+    res.json(results);
+  });
+});
+
+// API Endpoint to Retrieve All Services
+app.get('/api/services', (req, res) => {
+  const sql = 'SELECT services.*, categories.name AS category_name FROM services JOIN categories ON services.category_id = categories.id';
+  db.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    console.log(results)
     res.json(results);
   });
 });
@@ -58,16 +72,6 @@ app.post('/api/services', (req, res) => {
   });
 });
 
-// API Endpoint to Retrieve All Services
-app.get('/api/services', (req, res) => {
-  const sql = 'SELECT services.*, categories.name AS category_name FROM services JOIN categories ON services.category_id = categories.id';
-  db.query(sql, (err, results) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    res.json(results);
-  });
-});
 
 // API Endpoint to Update a Service
 app.put('/api/services/:id', (req, res) => {
