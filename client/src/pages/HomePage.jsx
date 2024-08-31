@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import CategoryList from '../components/CategoryList';
 import SearchBar from '../components/SearchBar';
 import ServiceList from '../components/ServiceList';
+import NewServiceForm from '../components/NewServiceForm';
 
 function HomePage() {
+  
   const [services, setServices] = useState([]);
   const [categories, setCategories] = useState([]);
   const [bookmarkedServices, setBookmarkedServices] = useState([]);
@@ -61,6 +63,40 @@ function HomePage() {
     ? services
     : services.filter((service) => service.category_name === selectedCategory);
 
+  
+  // Create New Service Form
+  const handleServiceCreated = (newService) => {
+    setServices([...services, newService]);
+  };  
+
+  const handleServiceUpdate = (id, title, description, category_id) => {
+  const updatedService = { title, description, category_id };
+
+  fetch(`http://localhost:5002/api/services/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(updatedService),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to update service');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      setServices((prevServices) =>
+        prevServices.map((service) =>
+          service.id === id ? { ...service, ...data } : service
+        )
+      );
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+};
+
   return (
     <div>
       <h1>Welcome to the Health Services Directory</h1>
@@ -70,6 +106,7 @@ function HomePage() {
       <ServiceList services={filteredServices.filter((service) => bookmarkedServices.includes(service.title))} onBookmark={handleBookmark} />
       <h2>{selectedCategory === 'All' ? 'All Services' : `Services in ${selectedCategory}`}</h2>
       <ServiceList services={filteredServices} onBookmark={handleBookmark} />
+      <NewServiceForm onServiceCreated={handleServiceCreated} />
     </div>
   );
 }

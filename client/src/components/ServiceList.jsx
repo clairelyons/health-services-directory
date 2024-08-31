@@ -1,20 +1,18 @@
 import React from 'react';
 import ServiceCard from './ServiceCard';
 
-function ServiceList({ services, onBookmark }) {
-  if (services.length === 0) {
-    return <p>No services available.</p>;
-  }
-
+function ServiceList({ services, onUpdate, onBookmark }) {
   return (
     <div className="service-list">
       {services.map((service) => (
         <ServiceCard
           key={service.id}
+          id={service.id}
           title={service.title}
           description={service.description}
           category={service.category_name}
-          onBookmark={onBookmark}
+          onUpdate={onUpdate}
+          onBookmark={onBookmark}  // Pass the onBookmark prop
         />
       ))}
     </div>
