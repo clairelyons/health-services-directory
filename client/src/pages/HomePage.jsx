@@ -97,6 +97,29 @@ function HomePage() {
     });
 };
 
+// const handleServiceDelete = (id) => {
+//   console.log("Deleting service with id:", id);  // Add this for debugging
+
+//   fetch(`http://localhost:5002/api/services/${id}`, {
+//     method: 'DELETE',
+//   })
+//     .then((response) => {
+//       if (!response.ok) {
+//         throw new Error('Failed to delete service');
+//       }
+//       return response.json();
+//     })
+//     .then((data) => {
+//       console.log('Service deleted:', data);
+//       // Update the state to remove the deleted service
+//       setServices((prevServices) => prevServices.filter((service) => service.id !== id));
+//     })
+//     .catch((error) => {
+//       console.error('Error deleting service:', error);
+//     });
+// };
+
+
   return (
     <div>
       <h1>Welcome to the Health Services Directory</h1>

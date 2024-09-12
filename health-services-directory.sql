@@ -66,3 +66,15 @@ SELECT * FROM users;
 SELECT * FROM categories;
 SELECT * FROM services;
 SELECT * FROM bookmarks;
+
+ALTER TABLE services ADD COLUMN is_active TINYINT(1) DEFAULT 1;
+
+SELECT id, title, description, is_active, category_id,
+       (SELECT name FROM categories WHERE categories.id = services.category_id) AS category_name
+FROM services;
+
+DESCRIBE services;
+
+UPDATE services SET is_active = 0 WHERE id = 1;  -- Mark the service with id 1 as inactive
+
+ALTER TABLE services DROP COLUMN active;

@@ -14,6 +14,7 @@ function NewServiceForm({ onServiceCreated }) {
       description,
       category_id: parseInt(category),
       contact_method: contactMethod,
+      is_active: 1,  // Set is_active to 1 to ensure the service is created as active
     };
 
     fetch('http://localhost:5002/api/services', {
