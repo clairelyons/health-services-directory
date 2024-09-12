@@ -199,12 +199,12 @@ app.put('/api/services/:id', (req, res) => {
   const { title, description, category_id, contact_method } = req.body;
 
   // Debugging: Log the incoming data
-  console.log('Updating service with data:', { title, description, category_id, contact_method });
+  console.log('Updating service with data:', { title, description, category_id });
 
   
   const sql = 'UPDATE services SET title = ?, description = ?, category_id = ?, contact_method = ? WHERE id = ?';
   
-  db.query(sql, [title, description, category_id, contact_method, id], (err, result) => {
+  db.query(sql, [title, description, category_id, id], (err, result) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
@@ -216,6 +216,7 @@ app.put('/api/services/:id', (req, res) => {
     const fetchUpdatedService = 'SELECT * FROM services WHERE id = ?';
     db.query(fetchUpdatedService, [id], (fetchErr, updatedResult) => {
       if (fetchErr) {
+        console.error('Error fetching updated service:', fetchErr);
         return res.status(500).json({ error: fetchErr.message });
       }
 

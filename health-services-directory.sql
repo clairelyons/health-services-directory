@@ -78,3 +78,6 @@ DESCRIBE services;
 UPDATE services SET is_active = 0 WHERE id = 1;  -- Mark the service with id 1 as inactive
 
 ALTER TABLE services DROP COLUMN active;
+
+SELECT * FROM services WHERE id >= 7;
+DELETE FROM services WHERE id >= 7;
