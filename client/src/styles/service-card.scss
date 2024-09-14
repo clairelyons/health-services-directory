@@ -1,0 +1,102 @@
+@import './global.scss'; // Import global styles where variables are defined
+
+.service-card.bookmarked {
+    border: 2px solid $primary-color;
+    background-color: lighten($primary-color, 40%);
+  }
+
+  .service-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  
+    /* Header for the service title */
+      h3 {
+        margin: 0 0 0.5rem 0;
+        text-align: left; /* Align title to the left */
+        font-size: 1.25rem;
+        font-weight: bold;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #ddd;
+      }
+  
+      /* Body for description and contact method */
+      .service-card-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Align content to the left */
+        padding: 0.5rem 0;
+    
+        p {
+          margin: 0.5rem 0;
+        }
+    
+        .contact-method-tag {
+          font-size: 0.875rem;
+          color: #008080;
+          background-color: #f0f0f0;
+          padding: 0.25rem 0.5rem;
+          border-radius: 4px;
+          margin-top: 0.5rem; /* Add some space above the contact method */
+        }
+      }
+  
+    /* Footer for category and buttons */
+    .service-card-footer {
+      display: flex;
+      justify-content: space-between;  // Align category left and buttons right
+      align-items: center;
+      border-top: 1px solid #ddd;
+      padding-top: 0.5rem;
+  
+      .category-tag {
+        background-color: #008080;
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+      }
+  
+      .button-group {
+        display: flex;
+        gap: 0.5rem;
+  
+        button {
+          background-color: #f5f5f5;
+          color: #008080;
+          border: none;
+          padding: 0.5rem 1rem;
+          cursor: pointer;
+          border-radius: 4px;
+        }
+  
+        .bookmark-btn {
+          background-color: #f0f0f0;
+          color: #008080;
+        }
+  
+        .deactivate-btn {
+          background-color: #f5f5f5;
+          color: #ff6347; /* Red tone for deactivate button */
+        }
+      }
+    }
+  
+    /* Bookmarked state */
+    &.bookmarked {
+      border: 2px solid rgb(0, 213, 255);
+      background-color: #e1f8ff;
+    }
+  
+    /* Inactive state */
+    &.inactive {
+      background-color: #f0f0f0;
+      opacity: 0.5;
+      pointer-events: none;  /* Disable interactions */
+    }
+  }

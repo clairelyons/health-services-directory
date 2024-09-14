@@ -121,7 +121,7 @@ function ServiceList() {
           throw new Error('Failed to fetch services');
         }
         const data = response.json()
-        // console.log(data)
+        console.log(data)
         return data;
       })
       .then((data) => {
@@ -154,9 +154,11 @@ function ServiceList() {
     const updatedService = { 
       title: updatedTitle, 
       description, 
-      category_id: defaultCategoryId  // Ensure category_id is set to a valid value
+      category_id: defaultCategoryId  // Ensure category_id is set to a valid value to fix bug
     };
 
+
+    // Moved update and logic from HomePage here due to error
     fetch(`http://localhost:5002/api/services/${id}`, {
       method: 'PUT',
       headers: {
@@ -207,6 +209,7 @@ function ServiceList() {
       });
   };
 
+
   return (
     <div className="service-list">
       {services.map((service) => (
@@ -216,6 +219,7 @@ function ServiceList() {
           title={service.title}
           description={service.description}
           category={service.category_name}
+          contactMethod={service.contact_method}
           isActive={service.is_active}
           bookmarked={bookmarkedServices.includes(service.id)} // Pass the bookmark state
           onUpdate={handleUpdateClick}
