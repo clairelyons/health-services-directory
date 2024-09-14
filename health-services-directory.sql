@@ -81,3 +81,8 @@ ALTER TABLE services DROP COLUMN active;
 
 SELECT * FROM services WHERE id >= 7;
 DELETE FROM services WHERE id >= 7;
+
+UPDATE services
+SET is_active = 1
+WHERE id >= 1;
+ 

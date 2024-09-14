@@ -109,8 +109,9 @@
 import React, { useState, useEffect } from 'react';
 import ServiceCard from './ServiceCard';
 
-function ServiceList({ onBookmark }) {
+function ServiceList() {
   const [services, setServices] = useState([]);
+  const [bookmarkedServices, setBookmarkedServices] = useState([]); // New state for bookmarked services
 
   useEffect(() => {
     // Fetch services when component mounts
@@ -119,7 +120,9 @@ function ServiceList({ onBookmark }) {
         if (!response.ok) {
           throw new Error('Failed to fetch services');
         }
-        return response.json();
+        const data = response.json()
+        // console.log(data)
+        return data;
       })
       .then((data) => {
         setServices(data);
@@ -129,12 +132,30 @@ function ServiceList({ onBookmark }) {
       });
   }, []);
 
+  // Function to handle bookmarking
+  const handleBookmarkClick = (id) => {
+    setBookmarkedServices((prevBookmarkedServices) => {
+      if (prevBookmarkedServices.includes(id)) {
+        // Remove from bookmarks if already bookmarked
+        return prevBookmarkedServices.filter((serviceId) => serviceId !== id);
+      } else {
+        // Add to bookmarks if not already bookmarked
+        return [...prevBookmarkedServices, id];
+      }
+    });
+  };
+
   // Function to handle service updates
   const handleUpdateClick = (id, updatedTitle, description, category_id) => {
+
+    // Check if category_id is null or undefined, set a default value
+  const defaultCategoryId = category_id ? parseInt(category_id, 10) : 1;  // Set your default category_id here
+
     const updatedService = { 
       title: updatedTitle, 
       description, 
-      category_id: parseInt(category_id, 10) }; // Convert category_id to an integer
+      category_id: defaultCategoryId  // Ensure category_id is set to a valid value
+    };
 
     fetch(`http://localhost:5002/api/services/${id}`, {
       method: 'PUT',
@@ -196,9 +217,9 @@ function ServiceList({ onBookmark }) {
           description={service.description}
           category={service.category_name}
           isActive={service.is_active}
-          bookmarked={service.bookmarked}
+          bookmarked={bookmarkedServices.includes(service.id)} // Pass the bookmark state
           onUpdate={handleUpdateClick}
-          onBookmark={onBookmark}
+          onBookmark={handleBookmarkClick}
           onDelete={handleDeleteClick}
         />
       ))}

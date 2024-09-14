@@ -194,17 +194,21 @@ app.post('/api/services', (req, res) => {
 //   });
 // });
 
+// Update
 app.put('/api/services/:id', (req, res) => {
   const { id } = req.params;
-  const { title, description, category_id, contact_method } = req.body;
+  const { title, description, category_id} = req.body;
+
+  // Set a default category_id if it's null or undefined
+  const defaultCategoryId = category_id ? category_id : 1;  // Set default category_id here (1, for example)
 
   // Debugging: Log the incoming data
-  console.log('Updating service with data:', { title, description, category_id });
+  console.log('Updating service with data:', { title, description, category_id: defaultCategoryId});
 
+  // fix sql query
+  const sql = 'UPDATE services SET title = ?, description = ?, category_id = ? WHERE id = ?';
   
-  const sql = 'UPDATE services SET title = ?, description = ?, category_id = ?, contact_method = ? WHERE id = ?';
-  
-  db.query(sql, [title, description, category_id, id], (err, result) => {
+  db.query(sql, [title, description, defaultCategoryId, id], (err, result) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
@@ -225,6 +229,27 @@ app.put('/api/services/:id', (req, res) => {
     });
   });
 });
+
+// Hard Delete Service (permanently delete a service by ID)
+app.delete('/api/services/:id', (req, res) => {
+  const { id } = req.params;
+
+  const sql = 'DELETE FROM services WHERE id = ?';
+
+  db.query(sql, [id], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: 'Service not found' });
+    }
+
+    res.json({ message: 'Service deleted successfully' });
+  });
+});
+// Bookmarked Services New Endpoint
+
 
 // // API Endpoint to Delete a Service (by it's service id)
 // app.delete('/api/services/:id', (req, res) => {

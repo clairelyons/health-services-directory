@@ -68,7 +68,7 @@ function ServiceCard({ id, title, description, category, onUpdate, onDelete, onB
   const handleUpdateClick = () => {
     const updatedTitle = prompt('Enter new title:', title);
     if (updatedTitle) {
-      onUpdate(id, updatedTitle, description, category);
+      onUpdate(id, updatedTitle, description, category); // fixed update bug 
     }
   };
 

@@ -37,6 +37,7 @@ function NewServiceForm({ onServiceCreated }) {
         setDescription('');
         setCategory('');
         setContactMethod('');
+        window.location.reload() // auto refresh
       })
       .catch((error) => {
         console.error('Error:', error);

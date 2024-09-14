@@ -142,9 +142,9 @@ import ServiceList from '../components/ServiceList';
 import NewServiceForm from '../components/NewServiceForm';
 
 function HomePage() {
-  const [services, setServices] = useState([]); 
+  const [services, setServices] = useState([]); // All services
   const [categories, setCategories] = useState([]);
-  const [bookmarkedServices, setBookmarkedServices] = useState([]);
+  const [bookmarkedServices, setBookmarkedServices] = useState([]); // Track bookmarked services by ID
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   useEffect(() => {
@@ -165,11 +165,12 @@ function HomePage() {
       });
   }, []);
 
-  const handleBookmark = (serviceTitle) => {
+  // Handle bookmarking
+  const handleBookmark = (serviceId) => {
     setBookmarkedServices((prev) =>
-      prev.includes(serviceTitle)
-        ? prev.filter((title) => title !== serviceTitle)
-        : [...prev, serviceTitle]
+      prev.includes(serviceId)
+        ? prev.filter((id) => id !== serviceId) // Remove from bookmarks
+        : [...prev, serviceId] // Add to bookmarks
     );
   };
 
@@ -177,6 +178,17 @@ function HomePage() {
     setSelectedCategory(category);
   };
 
+  // Filter services based on selected category
+  const filteredServices = selectedCategory === 'All'
+    ? services
+    : services.filter((service) => service.category_name === selectedCategory);
+
+  // Filter services that are bookmarked
+  const bookmarkedServiceList = services.filter((service) =>
+    bookmarkedServices.includes(service.id)
+  );
+
+  // Handle newly created service
   const handleServiceCreated = (newService) => {
     setServices((prevServices) => [...prevServices, newService]);
   };
@@ -187,11 +199,11 @@ function HomePage() {
       <SearchBar onSearch={(searchTerm) => console.log('Searching for:', searchTerm)} />
       <CategoryList categories={categories} onSelectCategory={handleCategorySelect} />
       
-      <h2>Bookmarked Services</h2>
-      <ServiceList services={bookmarkedServices} onBookmark={handleBookmark} />
+      {/* <h2>Bookmarked Services</h2>
+      <ServiceList services={bookmarkedServiceList} onBookmark={handleBookmark} /> */}
 
       <h2>{selectedCategory === 'All' ? 'All Services' : `Services in ${selectedCategory}`}</h2>
-      <ServiceList onBookmark={handleBookmark} />
+      <ServiceList services={filteredServices} onBookmark={handleBookmark} />
 
       <NewServiceForm onServiceCreated={handleServiceCreated} />
     </div>
