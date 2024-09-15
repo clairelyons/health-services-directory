@@ -37,13 +37,19 @@
           margin: 0.5rem 0;
         }
     
-        .contact-method-tag {
-          font-size: 0.875rem;
-          color: #008080;
+        .tags {
+          display: flex;
+          justify-content: flex-start;
+          gap: 10px; /* Space between tags */
+        }
+    
+        .contact-method-tag, .county-tag {
+          display: inline-block;
           background-color: #f0f0f0;
+          color: #008080;
           padding: 0.25rem 0.5rem;
           border-radius: 4px;
-          margin-top: 0.5rem; /* Add some space above the contact method */
+          font-size: 0.875rem;
         }
       }
   

@@ -220,6 +220,7 @@ function ServiceList() {
           description={service.description}
           category={service.category_name}
           contactMethod={service.contact_method}
+          county={service.county}  // Pass the county prop
           isActive={service.is_active}
           bookmarked={bookmarkedServices.includes(service.id)} // Pass the bookmark state
           onUpdate={handleUpdateClick}

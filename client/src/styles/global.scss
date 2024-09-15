@@ -42,23 +42,7 @@ body {
     flex: 1;
     padding: 2rem;
   }
-
-  .navbar {
-    background-color: $primary-color;
-    padding: 1rem;
-    ul {
-      list-style: none;
-      display: flex;
-      justify-content: space-around;
-      padding: 0;
-      margin: 0;
-    }
-    li {
-      color: white;
-      cursor: pointer;
-    }
-  }
-
+  
   // Home page catgories
   .category-list {
     margin: 2rem 0;

@@ -86,4 +86,6 @@ SET is_active = 1
 WHERE id >= 1;
 
 ALTER TABLE services MODIFY category_id INT DEFAULT 1;
- 
+
+ALTER TABLE services
+ADD county VARCHAR(50);

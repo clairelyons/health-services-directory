@@ -52,7 +52,7 @@ app.get('/api/categories', (req, res) => {
 // Fetch Active Servicess Only
 app.get('/api/services', (req, res) => {
   const query = `
-    SELECT id, title, description, is_active, category_id, contact_method,
+    SELECT id, title, description, is_active, category_id, contact_method, county,
         (SELECT name FROM categories WHERE categories.id = services.category_id) AS category_name
     FROM services;
   `;

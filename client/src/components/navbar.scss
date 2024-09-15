@@ -1,0 +1,41 @@
+/* Navbar styles */
+
+.navbar {
+    background-color: #008080;
+    color: white;
+  
+    .MuiTypography-root {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+  
+    .MuiIconButton-root {
+      color: white;
+    }
+  
+    .MuiDrawer-paper {
+      background-color: #ffffff;
+      width: 250px;
+      padding-top: 1rem;
+    }
+  
+    .MuiListItemText-root {
+      font-size: 1.5rem;
+      color: #008080;
+      font-weight: bold;
+      &:hover {
+        color: #005757;
+      }
+    }
+  
+    .MuiIconButton-close {
+      float: right;
+      margin-right: 1rem;
+      color: #008080;
+    }
+
+    .drawer-menu-item .MuiListItemText-root {
+      font-weight: bold !important;  // Ensure it's bold
+      font-size: 1.5rem !important;  // Ensure it's larger
+    }
+  }
