@@ -49,7 +49,7 @@ function ServiceCard({ id, title, description, category, county, contactMethod, 
         
         {/* Buttons aligned to the right in button group */}
         <div className="button-group">
-          <button onClick={handleUpdateClick}>Edit Title</button>
+          <button onClick={handleUpdateClick}>Edit</button>
           <button className="bookmark-btn" onClick={handleBookmarkClick}>
             {localBookmarked ? 'Unbookmark' : 'Bookmark'}
           </button>

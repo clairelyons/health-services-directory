@@ -1,14 +1,16 @@
 import React from 'react';
 
-function CategoryList() {
-  const categories = ['General Health', 'Mental Health', 'Dental Care', 'Vision Care'];
-
+function CategoryList({ categories, onSelectCategory }) {
   return (
     <div className="category-list">
-      <h2>What topic are you interested in?</h2>
+      <h2>Categories</h2>
       <ul>
-        {categories.map((category, index) => (
-          <li key={index}>{category}</li>
+        <li onClick={() => onSelectCategory('All')}>All</li> {/* Pass 'All' to show all services */}
+        <li onClick={() => onSelectCategory('Bookmarks')}>Bookmarks</li> {/* New Bookmarks filter */}
+        {categories.map((category) => (
+          <li key={category.id} onClick={() => onSelectCategory(category.id)}>
+            {category.name}
+          </li>
         ))}
       </ul>
     </div>
