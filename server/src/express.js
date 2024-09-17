@@ -96,15 +96,18 @@ app.put('/api/services/:id/inactive', (req, res) => {
 
 // Create 
 app.post('/api/services', (req, res) => {
-  const { title, description, category_id, contact_method } = req.body;
+  const { title, description, category_id, contact_method, county } = req.body;
 
-  // // Debugging: Log incoming data
-  // console.log('Creating new service with data:', { title, description, category_id, contact_method });
+  // Default value for is_active
+  const is_active = 1; // Assuming new services are active by default
+
+  // Debugging: Log incoming data
+  console.log('Creating new service with data:', { title, description, category_id, contact_method, county });
   
   // First, insert the new service
-  const sql = 'INSERT INTO services (title, description, category_id, contact_method, is_active) VALUES (?, ?, ?, ?, ?)';
+  const sql = 'INSERT INTO services (title, description, category_id, contact_method, is_active, county) VALUES (?, ?, ?, ?, ?, ?)';
   
-  db.query(sql, [title, description, category_id, contact_method], (err, result) => {
+  db.query(sql, [title, description, category_id, contact_method, is_active, county], (err, result) => {  // Add is_active to the query values
     if (err) {
       return res.status(500).json({ error: err.message });
     }
@@ -126,7 +129,7 @@ app.post('/api/services', (req, res) => {
       }
 
       // Return the newly created service with the category name
-      res.status(201).json(fetchResults[0]);  // <<< Send the service back to the frontend
+      res.status(201).json(fetchResults[0]);  // Send the service back to the frontend
     });
   });
 });

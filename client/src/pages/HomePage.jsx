@@ -62,8 +62,8 @@ function HomePage() {
       <SearchBar onSearch={(searchTerm) => console.log('Searching for:', searchTerm)} />
       <CategoryList categories={categories} onSelectCategory={handleCategorySelect} />
       
-      {/* <h2>Bookmarked Services</h2>
-      <ServiceList services={bookmarkedServiceList} onBookmark={handleBookmark} /> */}
+      <h2>Bookmarked Services</h2>
+      <ServiceList services={bookmarkedServiceList} onBookmark={handleBookmark} />
 
       <h2>{selectedCategory === 'All' ? 'All Services' : `Services in ${selectedCategory}`}</h2>
       <ServiceList services={filteredServices} onBookmark={handleBookmark} />
