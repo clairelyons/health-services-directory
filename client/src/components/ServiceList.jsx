@@ -62,22 +62,26 @@ function ServiceList({ services, bookmarkedServices, onBookmark, onUpdate, onDel
 
   return (
     <div className="service-list">
-      {services.map((service) => (
-        <ServiceCard
-          key={service.id}
-          id={service.id}
-          title={service.title}
-          description={service.description}
-          category={service.category_name}
-          contactMethod={service.contact_method}
-          county={service.county}
-          isActive={service.is_active}
-          bookmarked={safeBookmarkedServices.includes(service.id)}  // Use the safeBookmarkedServices array
-          onUpdate={handleUpdateClick}
-          onBookmark={handleBookmarkClick}
-          onDelete={handleDeleteClick}
-        />
-      ))}
+      {services.length > 0 ? (
+        services.map((service) => (
+          <ServiceCard
+            key={service.id}
+            id={service.id}
+            title={service.title}
+            description={service.description}
+            category={service.category_name}
+            contactMethod={service.contact_method}
+            county={service.county}
+            isActive={service.is_active}
+            bookmarked={safeBookmarkedServices.includes(service.id)}  // Use the safeBookmarkedServices array
+            onUpdate={handleUpdateClick}
+            onBookmark={handleBookmarkClick}
+            onDelete={handleDeleteClick}
+          />
+        ))
+      ) : (
+        <p>No bookmarks saved</p> // Display this message if there are no bookmarked services
+      )}
     </div>
   );
 }

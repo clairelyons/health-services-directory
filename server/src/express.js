@@ -171,6 +171,26 @@ app.put('/api/services/:id', (req, res) => {
   });
 });
 
+// Categories Route/Page
+app.get('/api/services', (req, res) => {
+  const { category } = req.query;  // Get category from query parameters
 
+  let query = `
+    SELECT id, title, description, is_active, category_id, contact_method, county,
+      (SELECT name FROM categories WHERE categories.id = services.category_id) AS category_name
+    FROM services
+  `;
+
+  if (category) {
+    query += ' WHERE category_id = ?';  // Filter by category
+  }
+
+  db.query(query, [category], (error, results) => {
+    if (error) {
+      return res.status(500).json({ error: 'Failed to fetch services' });
+    }
+    res.status(200).json(results);
+  });
+});
 // Bookmarked Services New Endpoint!!! Rohit suggestion
 

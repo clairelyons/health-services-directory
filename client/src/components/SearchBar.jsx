@@ -1,29 +1,3 @@
-// import React, { useState } from 'react';
-
-// function SearchBar({ onSearch }) {
-//   const [searchTerm, setSearchTerm] = useState('');
-
-//   const handleSearch = () => {
-//     if (onSearch) {
-//       onSearch(searchTerm);
-//     }
-//   };
-
-//   return (
-//     <div className="search-bar">
-//       <input
-//         type="text"
-//         placeholder="Search for services..."
-//         value={searchTerm}
-//         onChange={(e) => setSearchTerm(e.target.value)}
-//       />
-//       <button onClick={handleSearch}>Search</button>
-//     </div>
-//   );
-// }
-
-// export default SearchBar;
-
 import React, { useState } from 'react';
 
 function SearchBar({ onSearch }) {
@@ -51,7 +25,7 @@ function SearchBar({ onSearch }) {
     <div className="search-bar">
       <input
         type="text"
-        placeholder="Search for services..."
+        placeholder="Search for services by keyword, category or county"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyPress={handleKeyPress}  // Add this line to listen for "Enter" key press

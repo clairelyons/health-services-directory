@@ -65,19 +65,22 @@ function HomePage() {
     setSearchTerm(term);
   };
 
-  // Filter services based on selected category and search term
-  const filteredServices = services.filter((service) => {
-    const matchesCategory =
-      selectedCategory === 'All' ||
-      (selectedCategory === 'Bookmarks' && bookmarkedServices.includes(service.id)) || // Filter by bookmarks
-      service.category_id === selectedCategory;
-    const matchesSearch =
-      searchTerm === '' ||
-      service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      service.description.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    return matchesCategory && matchesSearch;
-  });
+// Filter services based on selected category and search term
+const filteredServices = services.filter((service) => {
+  const matchesCategory =
+    selectedCategory === 'All' ||
+    (selectedCategory === 'Bookmarks' && bookmarkedServices.includes(service.id)) || // Filter by bookmarks
+    service.category_id === selectedCategory;
+
+  const matchesSearch =
+    searchTerm === '' ||
+    service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    service.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (service.county && service.county.toLowerCase().includes(searchTerm.toLowerCase())); // Check if county matches search
+    (service.category_name && service.category_name.toLowerCase().includes(searchTerm.toLowerCase())); // Check if category name matches search
+
+  return matchesCategory && matchesSearch;
+});
 
   // Handle newly created service
   const handleServiceCreated = (newService) => {
@@ -94,7 +97,7 @@ function HomePage() {
       <ServiceList 
         services={filteredServices} 
         onBookmark={handleBookmark} 
-        onUpdate={handleServiceUpdate}  // Pass the update handler here
+        onUpdate={handleServiceUpdate}  // Pass the update handler here - onUpdate bug fixed
       />
 
       <NewServiceForm onServiceCreated={handleServiceCreated} />

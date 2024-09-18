@@ -77,15 +77,17 @@ DESCRIBE services;
 
 UPDATE services SET is_active = 0 WHERE id = 1;  -- Mark the service with id 1 as inactive
 
-
+-- Clear Test Inputs --
 SELECT * FROM services WHERE id >= 7;
 DELETE FROM services WHERE id >= 7;
 
-UPDATE services
-SET is_active = 1
-WHERE id >= 1;
 
 ALTER TABLE services MODIFY category_id INT DEFAULT 1;
 
 ALTER TABLE services
 ADD county VARCHAR(50);
+
+-- Reactivate ALL Services --
+UPDATE services
+SET is_active = 1
+WHERE id >= 1;
