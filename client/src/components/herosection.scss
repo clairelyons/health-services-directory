@@ -1,0 +1,26 @@
+.hero-section {
+    background-color: rgba(0, 0, 0, 0.5); // Optional overlay color
+  
+    // For mobile responsiveness
+    @media (max-width: 768px) {
+      height: 50vh;
+  
+      h1 {
+        font-size: 1.8rem;
+      }
+  
+      p {
+        font-size: 1rem;
+      }
+  
+      button {
+        font-size: 1rem;
+        padding: 8px 16px;
+      }
+    }
+  
+    // For larger screens
+    @media (min-width: 1200px) {
+      height: 80vh;
+    }
+  }

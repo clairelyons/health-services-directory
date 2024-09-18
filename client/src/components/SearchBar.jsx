@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './searchbar.scss';
 
 function SearchBar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -30,8 +31,8 @@ function SearchBar({ onSearch }) {
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyPress={handleKeyPress}  // Add this line to listen for "Enter" key press
       />
-      <button onClick={handleSearch}>Search</button>
-      <button onClick={handleClearSearch}>Clear</button> {/* Add a clear button */}
+      <button className="search-button" onClick={handleSearch}>Search</button>
+      <button className="clear-button" onClick={handleClearSearch}>Clear</button> {/* Add a clear button */}
     </div>
   );
 }

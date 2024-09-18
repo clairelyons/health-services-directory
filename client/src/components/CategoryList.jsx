@@ -8,7 +8,7 @@ function CategoryList({ categories, onSelectCategory }) {
         <li onClick={() => onSelectCategory('All')}>All</li> {/* Pass 'All' to show all services */}
         <li onClick={() => onSelectCategory('Bookmarks')}>Bookmarks</li> {/* New Bookmarks filter */}
         {categories.map((category) => (
-          <li key={category.id} onClick={() => onSelectCategory(category.id)}>
+          <li key={category.id} onClick={() => onSelectCategory(category.id, category.name)}>
             {category.name}
           </li>
         ))}

@@ -80,7 +80,7 @@ function ServiceList({ services, bookmarkedServices, onBookmark, onUpdate, onDel
           />
         ))
       ) : (
-        <p>No bookmarks saved</p> // Display this message if there are no bookmarked services
+        <p>No services to display</p> // Display this message if there are no bookmarked services
       )}
     </div>
   );

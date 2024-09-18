@@ -4,6 +4,7 @@ import SearchBar from '../components/SearchBar';
 import ServiceList from '../components/ServiceList';
 import NewServiceForm from '../components/NewServiceForm';
 
+
 function HomePage() {
   const [services, setServices] = useState([]); // All services
   const [categories, setCategories] = useState([]);

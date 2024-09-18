@@ -1,0 +1,49 @@
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    width: auto;
+  
+    input {
+      width: 100%;
+      max-width: 500px;
+      padding: 12px 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+  
+      &:focus {
+        outline: none;
+        border-color: #008080;  // Primary color for focus
+      }
+    }
+  
+    .search-button, .clear-button {
+      background-color: #008080;  // Primary color
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      margin-left: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #006666;  // Darker shade on hover
+      }
+  
+      &:focus {
+        outline: none;
+      }
+    }
+  
+    .clear-button {
+      background-color: #5a5a5a;  // Red for the clear button
+      &:hover {
+        background-color: #3e3e3e;  // Darker red on hover
+      }
+    }
+  }
